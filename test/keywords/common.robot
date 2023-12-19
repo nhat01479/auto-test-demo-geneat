@@ -15,8 +15,9 @@ ${STATE}            Evaluate    json.loads('''{}''')  json
 
 *** Keywords ***
 Login to admin
+  Wait Until Element Spin
   Enter "email" in "Email" with "admin@gmail.com"
-  Enter "text" in "Mật khẩu" with "123123"
+  Enter "password" in "Mật khẩu" with "123123"
   Click "Đăng nhập" button
   User look message "Success" popup
 
@@ -116,7 +117,7 @@ Enter "${type}" in "${name}" with "${text}"
   Fill Text                 ${element}                        ${text}                       True
   ${cnt}=                   Get Length                        ${text}
   IF  ${cnt} > 0
-    Set Global Variable     ${STATE["${name}"]}               ${text}
+    Set Global Variable     \${STATE["${name}"]}               ${text}
   END
 
 Enter "${type}" in textarea "${name}" with "${text}"
@@ -126,7 +127,7 @@ Enter "${type}" in textarea "${name}" with "${text}"
   Fill Text                 ${element}                        ${text}
   ${cnt}=                   Get Length                        ${text}
   IF  ${cnt} > 0
-    Set Global Variable     ${STATE["${name}"]}               ${text}
+    Set Global Variable     \${STATE["${name}"]}               ${text}
   END
 
 Enter date in "${name}" with "${text}"
@@ -139,7 +140,7 @@ Enter date in "${name}" with "${text}"
   Press Keys                ${element}                        Tab
   ${cnt}=                   Get Length                        ${text}
   IF  ${cnt} > 0
-      Set Global Variable   ${STATE["${name}"]}               ${text}
+      Set Global Variable   \${STATE["${name}"]}               ${text}
   END
 
 Click select "${name}" with "${text}"
@@ -151,7 +152,7 @@ Click select "${name}" with "${text}"
   Click                     xpath=//*[contains(@class, "ant-select-item-option") and @title="${text}"]
   ${cnt}=                   Get Length                        ${text}
   IF  ${cnt} > 0
-    Set Global Variable     ${STATE["${name}"]}               ${text}
+    Set Global Variable     \${STATE["${name}"]}               ${text}
   END
 
 Enter "${type}" in editor "${name}" with "${text}"
@@ -233,8 +234,10 @@ Click "${text}" tab button
   Click                     xpath=//*[contains(@class, "ant-tabs-tab-btn") and contains(text(), "${text}")]
 
 Select on the "${text}" item line
+  ${text}=                  Check Text                        ${text}
   Wait Until Element Spin
   ${element}=               Get Element Item By Name          ${text}
+
   Click                     ${element}
 
 
@@ -253,6 +256,7 @@ User look message "${message}" popup
   IF  ${cnt} > 0
     ${message}=             Replace String                    ${message}                    _@${contains[0]}@_          ${STATE["${contains[0]}"]}
   END
+  Wait Until Element Is Visible    id=swal2-html-container
   Element Text Should Be    id=swal2-html-container           ${message}
   ${element}=               Set Variable                      xpath=//*[contains(@class, "swal2-confirm")]
   ${passed}                 Run Keyword And Return Status
@@ -305,7 +309,7 @@ Enter "${type}" in placeholder "${placeholder}" with "${text}"
   Fill Text                  ${element}                        ${text}
   ${cnt}=                    Get Length                        ${text}
   IF  ${cnt} > 0
-    Set Global Variable     ${STATE["${placeholder}"]}         ${text}
+    Set Global Variable     \${STATE["${placeholder}"]}         ${text}
   END
 
 Enter date in placeholder "${name}" with "${date}"
@@ -316,7 +320,7 @@ Enter date in placeholder "${name}" with "${date}"
   Keyboard Key                Press                            Enter
   ${cnt}=                     Get Length                       ${date}
   IF  ${cnt} > 0
-    Set Global Variable       ${STATE["${date}"]}              ${date}
+    Set Global Variable       \${STATE["${date}"]}              ${date}
   END
   Wait Until Element Spin  
 
@@ -448,7 +452,7 @@ Click filter "${name}" with "${text}"
   Click                     xpath=//*[contains(@class, "ant-select-item-option") and @title="${text}"]
   ${cnt}=                   Get Length                         ${text}
   IF  ${cnt} > 0
-    Set Global Variable     ${STATE["${name}"]}                ${text}
+    Set Global Variable     \${STATE["${name}"]}                ${text}
   END
 
 Click on cross icon in select "${name}" 
@@ -483,7 +487,7 @@ Webpage should contains the list account from database
   ${element}=               Get Element                        //div[contains(@class,'datatable-wrapper')]    
   ${count}=                 Get Element Count                  ${element}
   IF    ${count} > 0
-    Set Global Variable     ${STATE["${count}"]}               ${count}
+    Set Global Variable     \${STATE["${count}"]}               ${count}
   END    
 Confirm adding account "${url}" page
   ${current_url}=           Get Url 
@@ -698,6 +702,7 @@ Get the first account name
 #   Should Contain        ${actual_text}         ${text}
 
 Confirm locating exactly in "${name}" page
+  Wait Until Element Spin
   ${cnt}=                 Get Element Count                      //header//span[contains(text(),"${name}")]
   Should Be True    ${cnt} > 0
 Webpage should contains "${text}" input field
@@ -742,7 +747,7 @@ Webpage should contains the list service from database
   ${element}=               Get Element                        //div[contains(@class,'datatable-wrapper')]    
   ${count}=                 Get Element Count                  ${element}
   IF    ${count} > 0
-    Set Global Variable     ${STATE["${count}"]}               ${count}
+    Set Global Variable     \${STATE["${count}"]}               ${count}
   END 
 
 
@@ -750,14 +755,14 @@ Webpage should contains the list data from database
   ${element}=               Get Element                        //div[contains(@class,'datatable-wrapper')]    
   ${count}=                 Get Element Count                  ${element}
   IF    ${count} > 0
-    Set Global Variable     ${STATE["${count}"]}               ${count}
+    Set Global Variable     \${STATE["${count}"]}               ${count}
   END 
 
 Webpage should contains the list category from database
   ${element}=               Get Element                        //div[contains(@class,'h-[calc(100vh-170px)]')]    
   ${count}=                 Get Element Count                  ${element}
   IF    ${count} > 0
-    Set Global Variable     ${STATE["${count}"]}               ${count}
+    Set Global Variable     \${STATE["${count}"]}               ${count}
   END 
 
 
@@ -787,7 +792,7 @@ Webpage should contain left arrow icon
     ${element}=               Get Element                        //i[contains(@class,'la-arrow-left')]  
      ${count}=                Get Element Count                  ${element}
     IF    ${count} > 0
-      Set Global Variable     ${STATE["${count}"]}               ${count}
+      Set Global Variable     \${STATE["${count}"]}               ${count}
     END 
 
 # Click on the "${text}" button in the "${name}" item line with cancel

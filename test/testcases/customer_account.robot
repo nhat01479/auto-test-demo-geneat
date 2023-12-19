@@ -426,7 +426,7 @@ CA_34 Create a new account with the invalid phone
     When Enter "password" in "Mật khẩu" with "_RANDOM_"
     When Enter "password" in "Xác nhận mật khẩu" with "_@Mật khẩu@_"
     When Click "Lưu lại" button
-    Then User look message "Số điện thoại gồm 10 số" pop up
+    Then User look message "Số điện thoại gồm 10 số" popup
 
 CA_35 Create a new account with the existed phone number
     [Tags]    create    invalid
@@ -644,10 +644,13 @@ Create a test account with "${type}" type
     ${name}=    Set Variable    ${text}
     Enter "email" in "Email" with "_RANDOM_"
     Enter "phone" in "Số điện thoại" with "_RANDOM_"
+    ${ph}=    Check Text    _@Số điện thoại@_
+    ${phone}=    Set Variable    ${ph}
     Click select "Giới tính" with "Nam"
     Click select "Loại tài khoản" with "${type}"
     Enter "password" in "Mật khẩu" with "_RANDOM_"
     Enter "password" in "Xác nhận mật khẩu" with "_@Mật khẩu@_"
+    Log To Console    'sdt: ${phone}'
     Click "Lưu lại" button
     User look message "Tạo tài khoản thành công" popup
     RETURN    ${name}

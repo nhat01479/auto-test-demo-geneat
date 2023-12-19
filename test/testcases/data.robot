@@ -37,7 +37,7 @@ DA_03 Verify that highlight after clicking on it
     Go to "Quản lý dữ liệu" page
     Create a category
     Create a test data with "_@Tên loại@_" type
-    When Select on the "${STATE["Tên loại"]}" item line
+    When Select on the "_@Tên loại@_" item line
     When Click on the "Sửa" button in the "_@Tiêu đề@_" table line
     When Click "Đóng lại" button
     Then "_@Tiêu đề@_" table line should be highlighted
@@ -82,7 +82,7 @@ DA_05 Verify "Thêm mới dữ liệu" button function
 DA_06 Create new data with the valid data
     [Tags]    create
     Create a category
-    Select on the "${STATE["Tên loại"]}" item line
+    Select on the "_@Tên loại@_" item line
     When Click "Thêm mới dữ liệu" button
     When Click select "Chuyên mục" with "_@Tên loại@_"
     When Enter "number" in "Thứ tự" with "_RANDOM_"
@@ -96,7 +96,7 @@ DA_06 Create new data with the valid data
 DA_07 Check the update of data list after creating a new data
     [Tags]    create
     Create a category
-    Select on the "${STATE["Tên loại"]}" item line
+    Select on the "_@Tên loại@_" item line
     When Click "Thêm mới dữ liệu" button
     When Click select "Chuyên mục" with "_@Tên loại@_"
     When Enter "number" in "Thứ tự" with "_RANDOM_"
@@ -129,7 +129,7 @@ DA_09 Create a new data when leaving "Chuyên mục" field blank
 DA_10 Create a new data when leaving "Tiêu đề" field blank
     [Tags]    create    blankField
     Create a category 
-    Select on the "${STATE["Tên loại"]}" item line
+    Select on the "_@Tên loại@_" item line
     When Click "Thêm mới dữ liệu" button
     When Click select "Chuyên mục" with "_@Tên loại@_"
     When Enter "number" in "Thứ tự" with "_RANDOM_"
@@ -141,7 +141,7 @@ DA_10 Create a new data when leaving "Tiêu đề" field blank
 DA_11 Verify that CAN create a new data when leaving a blank field in "Thứ tự"
     [Tags]    create    blankField
     Create a category 
-    Select on the "${STATE["Tên loại"]}" item line
+    Select on the "_@Tên loại@_" item line
     When Click "Thêm mới dữ liệu" button
     When Click select "Chuyên mục" with "_@Tên loại@_"
     When Enter "test name" in "Tiêu đề" with "_RANDOM_"
@@ -154,7 +154,7 @@ DA_11 Verify that CAN create a new data when leaving a blank field in "Thứ t�
 DA_12 Verify that CAN create a new data when leaving a blank field in "Mô tả"
     [Tags]    create    blankField
     Create a category 
-    Select on the "${STATE["Tên loại"]}" item line
+    Select on the "_@Tên loại@_" item line
     When Click "Thêm mới dữ liệu" button
     When Click select "Chuyên mục" with "_@Tên loại@_"
     When Enter "number" in "Thứ tự" with "_RANDOM_"
@@ -168,7 +168,7 @@ DA_12 Verify that CAN create a new data when leaving a blank field in "Mô tả"
 DA_13 Verify that CAN create a new data when leaving a blank field in "Nội dung"
     [Tags]    create    blankField
     Create a category 
-    Select on the "${STATE["Tên loại"]}" item line
+    Select on the "_@Tên loại@_" item line
     When Click "Thêm mới dữ liệu" button
     When Click select "Chuyên mục" with "_@Tên loại@_"
     When Enter "number" in "Thứ tự" with "_RANDOM_"
@@ -213,7 +213,7 @@ DA_17 Verify the changing "Chuyên mục" field
     ${Category1}=    Create a category
     Create a category
     Create a test data with "_@Tên loại@_" type
-    When Select on the "${STATE["Tên loại"]}" item line
+    When Select on the "_@Tên loại@_" item line
     When Click on the "Sửa" button in the "_@Tiêu đề@_" table line
     When Click select "Chuyên mục" with "${Category1}"
     When Click "Lưu lại" button
@@ -228,7 +228,7 @@ DA_18 Verify the changing "Tiêu đề" field
      [Tags]    changeInfo
     Create a category
     Create a test data with "_@Tên loại@_" type
-    When Select on the "${STATE["Tên loại"]}" item line
+    When Select on the "_@Tên loại@_" item line
     When Click on the "Sửa" button in the "_@Tiêu đề@_" table line
     When Enter "test name" in "Tiêu đề" with "_RANDOM_"
     When Click "Lưu lại" button
@@ -241,7 +241,7 @@ DA_19 Verify the changing "Thứ tự" field
     [Tags]    changeInfo
     Create a category
     Create a test data with "_@Tên loại@_" type
-    When Select on the "${STATE["Tên loại"]}" item line
+    When Select on the "_@Tên loại@_" item line
     When Click on the "Sửa" button in the "_@Tiêu đề@_" table line
     When Enter "number" in "Thứ tự" with "_RANDOM_"
     When Click "Lưu lại" button
@@ -256,7 +256,7 @@ DA_20 Verify the changing "Mô tả" field
     [Tags]    changeInfo
     Create a category
     Create a test data with "_@Tên loại@_" type
-    When Select on the "${STATE["Tên loại"]}" item line
+    When Select on the "_@Tên loại@_" item line
     When Click on the "Sửa" button in the "_@Tiêu đề@_" table line
     When Enter "text" in textarea "Mô tả" with "_RANDOM_"
     When Click "Lưu lại" button
@@ -271,7 +271,7 @@ DA_21 Verify the changing "Nội dung" field
     [Tags]    changeInfo
     Create a category
     Create a test data with "_@Tên loại@_" type
-    When Select on the "${STATE["Tên loại"]}" item line
+    When Select on the "_@Tên loại@_" item line
     When Click on the "Sửa" button in the "_@Tiêu đề@_" table line
     When Enter "text" in textarea "Nội dung" with "_RANDOM_"
     When Click "Lưu lại" button
@@ -287,47 +287,47 @@ DA_22 Check the "Đóng lại" button in edit infomation page
     [Tags]    changeInfo    button
     Create a category
     Create a test data with "_@Tên loại@_" type
-    When Select on the "${STATE["Tên loại"]}" item line
-    When Click on the "Sửa" button in the "_@Tiêu đề@_" item line
+    When Select on the "_@Tên loại@_" item line
+    When Click on the "Sửa" button in the "_@Tiêu đề@_" table line
     When Click "Đóng lại" button
     Then Confirm locating exactly in "Quản lý dữ liệu" page
     Then Webpage should contain "Thêm mới dữ liệu" button
     Then Webpage should contains the list data from database
-    Then "_@Tiêu đề@_" item line should be highlighted
-    When Click on the "Xóa" button in the "_@Tiêu đề@_" item line
+    Then "_@Tiêu đề@_" table line should be highlighted
+    When Click on the "Xóa" button in the "_@Tiêu đề@_" table line
     When Click on the "Xóa" button in the "_@Tên loại@_" item line
 DA_23 Check the left arrow icon ("Trở lại" button) in edit infomation page
     [Tags]    changeInfo    button
     Create a category
     Create a test data with "_@Tên loại@_" type
-    When Select on the "${STATE["Tên loại"]}" item line
+    When Select on the "_@Tên loại@_" item line
     When Click on the "Sửa" button in the "_@Tiêu đề@_" table line
     When Click on the left arrow icon
     Then Confirm locating exactly in "Quản lý dữ liệu" page
     Then Webpage should contain "Thêm mới dữ liệu" button
     Then Webpage should contains the list data from database
-    Then "_@Tiêu đề@_" item line should be highlighted
-    When Click on the "Xóa" button in the "_@Tiêu đề@_" item line
+    Then "_@Tiêu đề@_" table line should be highlighted
+    When Click on the "Xóa" button in the "_@Tiêu đề@_" table line
     When Click on the "Xóa" button in the "_@Tên loại@_" item line
 DA_24 Check the "Trở lại" (left arrow icon) button in edit infomation page
     [Tags]    changeInfo    button
     Create a category
     Create a test data with "_@Tên loại@_" type
-    When Select on the "${STATE["Tên loại"]}" item line
+    When Select on the "_@Tên loại@_" item line
     When Click on the "Sửa" button in the "_@Tiêu đề@_" table line
     When Click "Trở lại" button
     Then Confirm locating exactly in "Quản lý dữ liệu" page
     Then Webpage should contain "Thêm mới dữ liệu" button
     Then Webpage should contains the list data from database
-    Then "_@Tiêu đề@_" item line should be highlighted
-    When Click on the "Xóa" button in the "_@Tiêu đề@_" item line
+    Then "_@Tiêu đề@_" table line should be highlighted
+    When Click on the "Xóa" button in the "_@Tiêu đề@_" table line
     When Click on the "Xóa" button in the "_@Tên loại@_" item line
 ### Verify the User Interface of detail information's account page		
 DA_25 Verify that navigating to the right "edit data" page
     [Tags]    DetailedInfo
     Create a category
     Create a test data with "_@Tên loại@_" type
-    When Select on the "${STATE["Tên loại"]}" item line
+    When Select on the "_@Tên loại@_" item line
     When Click on the "Chi tiết" button in the "_@Tiêu đề@_" table line
     Then Heading should contains "Chỉnh sửa dữ liệu" inner Text
     Then Webpage should contains "Chuyên mục" input field
@@ -340,7 +340,7 @@ DA_26 Check data information after creation
     [Tags]    DetailedInfo
     Create a category
     Create a test data with "_@Tên loại@_" type
-    When Select on the "${STATE["Tên loại"]}" item line
+    When Select on the "_@Tên loại@_" item line
     When Click on the "Chi tiết" button in the "_@Tiêu đề@_" table line
     # Then Data's information in "Chuyên mục" should be equal "_@Tên loại@_"
     # Then Data's information in "Thứ tự" should be equal "_@Thứ tư@_"
@@ -356,7 +356,7 @@ DA_27 Verify the delete data function
     [Tags]    delete
     Create a category
     Create a test data with "_@Tên loại@_" type
-    # When Select on the "${STATE["Tên loại"]}" item line
+    # When Select on the "_@Tên loại@_" item line
     When Click on the "Xóa" button in the "_@Tiêu đề@_" table line
     Then User look message "Xóa thành công" popup
     Then "_@Tiêu đề@_" should not be visible in item line
@@ -366,7 +366,7 @@ DA_28 Verify the cancel action button when delete data
     [Tags]    delete
     Create a category
     Create a test data with "_@Tên loại@_" type
-    # When Select on the "${STATE["Tên loại"]}" item line
+    # When Select on the "_@Tên loại@_" item line
     # When Click on the "Chi tiết" button in the "_@Tiêu đề@_" table line
     # When Click "Trở lại" button
     When Click on the "Xóa" button in the "_@Tiêu đề@_" table line with cancel
@@ -374,7 +374,6 @@ DA_28 Verify the cancel action button when delete data
     When Click on the "Xóa" button in the "_@Tiêu đề@_" table line
     Then User look message "Xóa thành công" popup
     When Click on the "Xóa" button in the "_@Tên loại@_" item line
-
 *** Keywords ***
 
 Go to "${page}" page

@@ -186,7 +186,7 @@ CA_18 Check the "Đóng lại" button in edit infomation page
     When Click "Đóng lại" button
     When Click on the "Xóa" button in the "_@Tên loại@_" item line
     Then Confirm locating exactly in "Quản lý dữ liệu" page
-    Then Webpage should contains the list account from database
+    Then Webpage should contains the list category from database
     Then Webpage should contain "Tạo mới" button
 
 CA_19 Check the left arrow icon ("Trở lại" button) in edit infomation page
@@ -196,7 +196,7 @@ CA_19 Check the left arrow icon ("Trở lại" button) in edit infomation page
     When Click on the left arrow icon
     When Click on the "Xóa" button in the "_@Tên loại@_" item line
     Then Confirm locating exactly in "Quản lý dữ liệu" page
-    Then Webpage should contains the list account from database
+    Then Webpage should contains the list category from database
     Then Webpage should contain "Tạo mới" button
 
 CA_20 Check the (left arrow icon) "Trở lại" button in edit infomation page
@@ -206,25 +206,25 @@ CA_20 Check the (left arrow icon) "Trở lại" button in edit infomation page
     When Click on the left arrow icon
     When Click on the "Xóa" button in the "_@Tên loại@_" item line
     Then Confirm locating exactly in "Quản lý dữ liệu" page
-    Then Webpage should contains the list account from database
+    Then Webpage should contains the list category from database
     Then Webpage should contain "Tạo mới" button
 
 ### Verify the delete data function
 CA_21 Verify the delete data function
-    [Tags]                                                                                     Delete                                                                        
+    [Tags]  Delete                                                                        
     Create a category
     When Click on the "Xóa" button in the "_@Tên loại@_" item line
     Then User look message "Success" popup
     Then "_@Tên loại@_" should not be visible in item line
 
 CA_22 Verify the cancel action button when delete data
-    [Tags]                                                                                     Delete                                                                        
+    [Tags]  Delete                                                                        
     Create a category
     When Click on the "Xóa" button in the "_@Tên loại@_" item line with cancel
     Then "_@Tên loại@_" should be visible in item line
     When Click on the "Xóa" button in the "_@Tên loại@_" item line
 CT_23 Check to delete category that still having data inside
-    [Tags]                                                                                     Delete                                                                        
+    [Tags]  Delete                                                                        
     Create a category
     When Click "Thêm mới dữ liệu" button
     When Click select "Chuyên mục" with "_@Tên loại@_"
@@ -237,6 +237,12 @@ CT_23 Check to delete category that still having data inside
     Then User look message "Danh mục có dữ liệu không thể xóa" popup
     When Click on the "Xóa" button in the "_@Tiêu đề@_" table line
     When Click on the "Xóa" button in the "_@Tên loại@_" item line
+
+Clear Data
+    Login to admin
+    When Click "QUẢN LÝ DANH MỤC" menu
+    When Click "Quản lý dữ liệu" sub menu to "/data"
+    Clear test category data
 *** Keywords ***
 
 Go to "${page}" page
@@ -273,3 +279,24 @@ Heading of separated group should contain "${text}" inner Text
 
 
 
+Clear test category data
+    ${elements}=              Get Elements                //div[contains(@class,'h-[calc(100vh-170px)]')]//button[contains(@class,'item')]    
+    ${count}=                 Get Length                  ${elements}
+    IF    ${count} > 3
+          ${range_end}=          Evaluate                    ${count} - 3
+          FOR    ${counter}    IN RANGE    0    ${range_end}
+               Click           ${elements}[0]
+               Wait Until Element Spin
+               ${ele}=         Set Variable                xpath=//tbody//tr[contains(@class,'ant-table-row')]//button[@title = "Xóa"]
+               ${ele_cnt}=     Get Element Count          ${ele}
+               IF    '${ele_cnt}' == '1'
+                    Click           ${ele}
+                    Click Confirm To Action
+               END
+               ${e}=    Get Element    (//div[contains(@class,'h-[calc(100vh-170px)]')]//button[contains(@class,'item')])[1]//button[@title = "Xóa"]
+               Click                      ${e}
+               Click Confirm To Action
+               Wait Until Element Spin
+
+          END
+    END    
