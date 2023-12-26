@@ -36,7 +36,7 @@ CA_03 Verify "Tạo mới" button function
     Go to "Quản lý dữ liệu" page
     When Click "Tạo mới" button
     Then Heading should contains "Thêm mới chuyên mục" inner Text
-    Then Confirm adding account "/data/type" page 
+    Then Confirm adding "/data/type" page 
     Then Heading should contains "Thông tin" inner Text
     # Then Heading of separated group should contain "Thông tin" inner Text
     Then Webpage should contains "Tên loại" input field
@@ -239,7 +239,7 @@ CT_23 Check to delete category that still having data inside
     When Click on the "Xóa" button in the "_@Tên loại@_" item line
 
 Clear Data
-    Login to admin
+    Login to admin 
     When Click "QUẢN LÝ DANH MỤC" menu
     When Click "Quản lý dữ liệu" sub menu to "/data"
     Clear test category data
@@ -287,16 +287,44 @@ Clear test category data
           FOR    ${counter}    IN RANGE    0    ${range_end}
                Click           ${elements}[0]
                Wait Until Element Spin
-               ${ele}=         Set Variable                xpath=//tbody//tr[contains(@class,'ant-table-row')]//button[@title = "Xóa"]
-               ${ele_cnt}=     Get Element Count          ${ele}
-               IF    '${ele_cnt}' == '1'
-                    Click           ${ele}
-                    Click Confirm To Action
-               END
-               ${e}=    Get Element    (//div[contains(@class,'h-[calc(100vh-170px)]')]//button[contains(@class,'item')])[1]//button[@title = "Xóa"]
-               Click                      ${e}
-               Click Confirm To Action
-               Wait Until Element Spin
 
+
+
+               ${elm}=          Set Variable                //tr[contains(@class,'ant-table-row')]//button[@title = "Xóa"]
+               ${ele_cnt}=      Get Element Count           ${elm}
+                Log To Console    'message: ${ele_cnt}'
+               IF    '${ele_cnt}' > '0'
+                    ${eles}=         Get Elements                //tr[contains(@class,'ant-table-row')]//button[@title = "Xóa"]
+                    FOR    ${cnt}    IN RANGE    ${ele_cnt}     0    -1
+                            Log To Console    'message-cnt: ${cnt}'
+
+                            Click           ${eles}[${cnt - 1}]
+                            Wait Until Element Spin
+                            Click Confirm To Action
+                    END
+               END
+                ${e}=    Get Element    (//div[contains(@class,'h-[calc(100vh-170px)]')]//button[contains(@class,'item')])[1]//button[@title = "Xóa"]
+                Click                      ${e}
+                Click Confirm To Action
+                Wait Until Element Spin
           END
     END    
+
+Dequy
+    Wait Until Element Spin
+    ${ele}=          Get Elements                 //tbody//tr[contains(@class,'ant-table-row')]//button[@title = "Xóa"]
+    ${ele_cnt}=      Get Length                   ${ele}
+    Log To Console    'message: ${ele_cnt}'
+    IF    '${ele_cnt}' > '0'
+        Click           ${ele}[0]
+        Wait Until Element Spin
+        Click Confirm To Action
+    END
+    IF  '${ele_cnt}' > '1'
+        Dequy
+    END
+    ${e}=    Get Element       (//div[contains(@class,'h-[calc(100vh-170px)]')]//button[contains(@class,'item')])[1]//button[@title = "Xóa"]
+    Click                      ${e}
+    Click Confirm To Action
+    Wait Until Element Spin
+

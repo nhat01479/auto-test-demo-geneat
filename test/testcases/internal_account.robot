@@ -234,7 +234,7 @@ IA_19 Verify "Tạo mới" button function
     Go to "Internal Account" page
     When Click "Tạo mới" button
     Then Heading should contains "Tạo mới tài khoản nội bộ" inner Text
-    Then Confirm adding account "/internal-account" page
+    Then Confirm adding "/internal-account" page
     Then Webpage should contains "Họ và tên" input field
     Then Webpage should contains "Email" input field
     Then Webpage should contains "Số điện thoại" input field

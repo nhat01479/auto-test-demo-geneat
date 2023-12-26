@@ -63,7 +63,7 @@ DA_05 Verify "Thêm mới dữ liệu" button function
     # Select on the "_@Tên loại@_" item line
     When Click "Thêm mới dữ liệu" button
     Then Heading should contains "Thêm mới dữ liệu" inner Text
-    Then Confirm adding account "/data" page
+    Then Confirm adding "/data" page
     # Then Heading of separated group should contain "Thông tin" inner Text
     Then Webpage should contains "Chuyên mục" input field
     Then Webpage should contains "Thứ tự" input field

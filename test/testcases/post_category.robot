@@ -36,7 +36,7 @@ PC_03 Verify "Tạo mới" button function
     Go to "Post" page
     When Click "Tạo mới" button
     Then Heading should contains "Tạo mới bài viết" inner Text
-    Then Confirm adding account "/post/categories" page 
+    Then Confirm adding "/post/categories" page 
     Then Heading should contains "Thông tin" inner Text
     # Then Heading of separated group should contain "Thông tin" inner Text
     Then Webpage should contains "Tiêu đề" input field
@@ -221,20 +221,30 @@ PC_22 Verify the cancel action button when delete data
     When Click on the "Xóa" button in the "_@Tiêu đề@_" item line with cancel
     Then "_@Tiêu đề@_" should be visible in item line
     When Click on the "Xóa" button in the "_@Tiêu đề@_" item line
-# CT_23 Check to delete category that still having data inside
-#     [Tags]  Delete                                                                        
-#     Create a test post_category
-#     When Click "Thêm mới dữ liệu" button
-#     When Click select "Chuyên mục" with "_@Tiêu đề@_"
-#     When Enter "number" in "Thứ tự" with "_RANDOM_"
-#     When Enter "test name" in "Tiêu đề" with "_RANDOM_"
-#     When Enter "paragraph" in textarea "Mô tả" with "_RANDOM_"
-#     When Enter "paragraph" in textarea "Nội dung" with "_RANDOM_"
-#     When Click "Lưu lại" button
-#     When Click on the "Xóa" button in the "_@Tiêu đề@_" item line
-#     Then User look message "Danh mục có dữ liệu không thể xóa" popup
-#     When Click on the "Xóa" button in the "_@Tiêu đề@_" table line
-#     When Click on the "Xóa" button in the "_@Tiêu đề@_" item line
+CT_23 Check to delete category that still having data inside
+    [Tags]  Delete                                                                        
+    ${category}=    Create a test post_category
+    Click "Tạo mới bài viết" button
+    Click radio "Loại editor" in line "Block"
+    Click select "Chuyên mục" with "${category}"
+    Click "Tiếng Việt" tab button
+    ${title_1}=    Enter "test name" in "Tiêu đề" with "_RANDOM_"
+    Enter "test name" in "SEO URL" with "_RANDOM_"
+    Enter "test name" in "Tác giả" with "_RANDOM_"
+    Enter "test name" in "Mô tả ảnh cover" with "_RANDOM_"
+    Enter "paragraph" in textarea "Giới thiệu" with "_RANDOM_"
+    Enter "paragraph" in editor "Nội dung" with "_RANDOM_"
+    Enter "test name" in "Tiêu đề SEO" with "_RANDOM_"
+    Enter "word" in placeholder "Nhập từ khóa seo" with "_RANDOM_" 
+    Enter "paragraph" in textarea "Mô tả SEO" with "_RANDOM_"
+    Click "English" tab button
+    Enter "test name" in "Tiêu đề" with "_RANDOM_"
+    Click "Lưu lại" button
+    Click on the "Xóa" button in the "${category}" item line
+    User look message "Không thể xóa danh mục đang có bài viết" popup
+    Select on the "${category}" item line
+    Click on the "Xóa" button in the "${title_1}" table line
+    Click on the "Xóa" button in the "${category}" item line
 *** Keywords ***
 
 Go to "${page}" page

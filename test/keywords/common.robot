@@ -119,7 +119,7 @@ Enter "${type}" in "${name}" with "${text}"
   IF  ${cnt} > 0
     Set Global Variable     \${STATE["${name}"]}               ${text}
   END
-
+  [Return]    ${text}
 Enter "${type}" in textarea "${name}" with "${text}"
   ${text}=                  Get Random Text                   ${type}                       ${text}
   ${element}=               Get Element Form Item By Name     ${name}                       //textarea
@@ -388,7 +388,7 @@ Click on the "${text}" button in the "${name}" table line
     END
   ELSE
     ${element}=               Get Element Table Item By Name    ${name}                      //button[@title = "${text}"]
-    Click                     ${element} 
+    Click                     ${element}
   END
   Click Confirm To Action
   
@@ -489,7 +489,7 @@ Webpage should contains the list account from database
   IF    ${count} > 0
     Set Global Variable     \${STATE["${count}"]}               ${count}
   END    
-Confirm adding account "${url}" page
+Confirm adding "${url}" page
   ${current_url}=           Get Url 
   Should Contain            ${current_url}                     ${URL_DEFAULT}${url}/add  
 
@@ -834,7 +834,7 @@ Click on "${ordinal}" selection to change the number of account show in list and
       ${text_current}=    Get Text    ${element}
       ${elmm}=    Set Variable    ${element}
 
-      Run Keyword If  '${text_current}' != 'Test'    Exit For Loop   
+      Run Keyword If  'page' in '${text_current}'    Exit For Loop   
   END
   # ${text_current}=              Get Text                        //*[contains(@class, 'ant-select-selection-item')]
   ${current}=                   Get Regexp Matches              ${text_current}                          (.+) / page                    1
@@ -893,3 +893,14 @@ Click on "${ordinal}" selection to change the number of account show in list and
     END
   END
   Wait Until Element Spin
+
+Enter "${type}" in "${name}" of "${tab}" tab with "${text}"
+  ${text}=                  Get Random Text                   ${type}                       ${text}
+  ${element}=               Get Element Form Item By Name     ${name}                       //input[contains(@class, "ant-input")]
+  Clear Text                ${element}
+  Fill Text                 ${element}                        ${text}                       True
+  ${cnt}=                   Get Length                        ${text}
+  IF  ${cnt} > 0
+    Set Global Variable     \${STATE["${name}"]}               ${text}
+  END
+  [Return]    ${text}

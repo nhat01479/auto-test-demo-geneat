@@ -258,7 +258,7 @@ CA_21 Verify "Tạo mới" button function
     Go to "Customer Account" page
     When Click "Tạo mới" button
     Then Heading should contains "Tạo mới tài khoản khách hàng" inner Text
-    Then Confirm adding account "/customer-account" page
+    Then Confirm adding "/customer-account" page
     Then Webpage should contains "Họ và tên" input field
     Then Webpage should contains "Email" input field
     Then Webpage should contains "Số điện thoại" input field
