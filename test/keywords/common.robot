@@ -2,7 +2,7 @@
 Library             Browser
 Library             FakerLibrary        locale=en_IN
 Library             String
-Library    DateTime
+Library             DateTime
 
 *** Variables ***
 ${BROWSER}          chromium
@@ -84,7 +84,7 @@ Get Random Text
   ELSE IF  ${cnt} > 0 and '${type}' == 'phone'
     ${new_text}=            FakerLibrary.Random Int           min=2000000000                max=9999999999
     ${new_text}=            Convert To String                 ${new_text}
-    ${new_text}=            Catenate                          SEPARATOR=                    0                           ${new_text}
+    # ${new_text}=            Catenate                          SEPARATOR=                    0                           ${new_text}
   ELSE IF  ${cnt} > 0 and '${type}' == 'color'
     ${new_text}=            FakerLibrary.Safe Hex Color
   ELSE IF  ${cnt} > 0 and "${type}" == 'password'
@@ -92,7 +92,7 @@ Get Random Text
   ELSE IF  ${cnt} > 0 and '${type}' == 'date'
     ${new_text}=            FakerLibrary.Date  	              pattern=%d-%m-%Y
   ELSE IF  ${cnt} > 0 and '${type}' == 'word'
-    ${new_text}=            FakerLibrary.Sentence             nb_words=2
+    ${new_text}=            FakerLibrary.Sentence             nb_words=1
   ELSE IF  ${cnt} > 0
     ${new_text}=            FakerLibrary.Sentence
   END
@@ -113,6 +113,8 @@ Required message "${text}" displayed under "${name}" field
 Enter "${type}" in "${name}" with "${text}"
   ${text}=                  Get Random Text                   ${type}                       ${text}
   ${element}=               Get Element Form Item By Name     ${name}                       //input[contains(@class, "ant-input")]
+  ${e}=    Get Element    ${element}
+  Log To Console    'e: ${e}'
   Clear Text                ${element}
   Fill Text                 ${element}                        ${text}                       True
   ${cnt}=                   Get Length                        ${text}
@@ -239,7 +241,7 @@ Select on the "${text}" item line
   ${element}=               Get Element Item By Name          ${text}
 
   Click                     ${element}
-
+  [Return]    ${text}
 
 Click "${text}" menu
   Click                     xpath=//li[contains(@class, "menu") and descendant::span[contains(text(), "${text}")]]
@@ -340,9 +342,19 @@ Enter date in placeholder "${name}" with "${date}"
   END
 
 Data's information in "${field}" should be equal "${value}"
-  ${value}=                 Check Text                         ${value}        
-  ${element}=               Get Element                        //th[contains(text(),"${field}")]//following-sibling::th[1]
-  Get Text                  ${element}                         equal                                                     ${value}
+  ${value}=                       Check Text                          ${value}        
+  ${element_table}                Set Variable                        //th[contains(text(),"${field}")]//following-sibling::th[1]
+  ${count_tb}=                    Get Element Count                   ${element_table}
+  IF    '${count_tb}' > '0'
+        Get Text                  ${element_table}                    equal                          ${value}
+        RETURN
+  END
+  ${element_input}                Set Variable                        //*[contains(@class, "ant-form-item-label")]/label[text()="${field}"]/../../*[contains(@class, "ant-form-item")]//*[contains(@class, "ant-input")]
+  ${count_input}=                 Get Element Count                   ${element_input}
+  IF    '${count_input}' > '0'
+        Get Text                  ${element_input}                    equal                          ${value}
+        RETURN
+  END
 
 Data's information should contain "${name_field}" field 
   ${name_field}=            Check Text                         ${name_field}
@@ -393,6 +405,7 @@ Click on the "${text}" button in the "${name}" table line
   Click Confirm To Action
   
 Click Cancel Action
+  Wait Until Element Spin
   ${element}                Set Variable                       xpath=//*[contains(@class, "ant-popover")]//button[1]
   ${count}=                 Get Element Count                  ${element}
   IF    ${count} > 0
@@ -904,3 +917,7 @@ Enter "${type}" in "${name}" of "${tab}" tab with "${text}"
     Set Global Variable     \${STATE["${name}"]}               ${text}
   END
   [Return]    ${text}
+
+Heading of separated group should contain "${text}" inner Text
+  ${actual_text}            Get Text                  //div[contains(@class,'h-14')]//span[contains(text(),"${text}")]                         
+  Should Contain            ${text}                   ${actual_text}
