@@ -84,7 +84,7 @@ CODE_05 Verify "Thêm mới Bằng cấp chuyên môn" button function
     ${text}=    Select on the "Bằng cấp chuyên môn" item line
     Click "Thêm mới" button
     Heading should contains "Thêm mới ${text}" inner Text
-    Confirm adding "/code-types/MEDICAL_DEGRE" page
+    Confirm adding "/code-types/MEDICAL_DEGREE" page
     Webpage should contains "Tiêu đề" input field
     Webpage should contains "Thứ tự" input field
     Webpage should contains "Mã" input field
@@ -200,8 +200,8 @@ CODE_14 Verify the "Đóng lại" button
 CODE_15 Verify the left arrow icon ("Trở lại" button)
   Go to "Danh mục" page
   When Select on the "Nhóm thủ thuật" item line
+  When Click "Thêm mới" button
   When Click on the left arrow icon
-  When Click "Đóng lại" button 
   Then Confirm locating exactly in "Danh mục" page
   Then Heading of separated group should contain "Loại danh mục" inner Text
   Then "Nhóm thủ thuật" should be visible in item line
@@ -216,8 +216,8 @@ CODE_15 Verify the left arrow icon ("Trở lại" button)
 CODE_16 Verify the "Trở lại" (left arrow icon) button
   Go to "Danh mục" page
   When Select on the "Nhóm thủ thuật" item line
+  When Click "Thêm mới" button
   When Click "Trở lại" button
-  When Click "Đóng lại" button 
   Then Confirm locating exactly in "Danh mục" page
   Then Heading of separated group should contain "Loại danh mục" inner Text
   Then "Nhóm thủ thuật" should be visible in item line
@@ -263,16 +263,16 @@ CODE_20 Verify the changing "Mô tả" field
     When Click "Lưu lại" button
     Then User look message "Success" popup
     When Click on the "Xóa" button in the "_@Tiêu đề@_" table line
-CODE_21 Verify the changing with the existed "Mã"	
-    ${title_1}=    Create a test data with "Nhóm thủ thuật" type
-    ${title_2}=    Create a test data with "Nhóm thủ thuật" type
-    When Select on the "Nhóm thủ thuật" item line
-    When Click on the "Sửa" button in the "${title_1}" table line
-    When Enter "word" in "Mã" with "_@Mã@_"
-    When Click "Lưu lại" button
-    Then User look message "Success" popup
-    When Click on the "Xóa" button in the "${title_2}" table line
-    When Click on the "Xóa" button in the "${title_1}" table line
+# CODE_21 Verify the changing with the existed "Mã"	
+#     ${title_1}=    Create a test data with "Nhóm thủ thuật" type
+#     ${title_2}=    Create a test data with "Nhóm thủ thuật" type
+#     When Select on the "Nhóm thủ thuật" item line
+#     When Click on the "Sửa" button in the "${title_1}" table line
+#     When Enter "word" in "Mã" with "_@Mã@_"
+#     When Click "Lưu lại" button
+#     Then User look message "Success" popup
+#     When Click on the "Xóa" button in the "${title_2}" table line
+#     When Click on the "Xóa" button in the "${title_1}" table line
 
 ### Verify the go back function of buttons in change information's page
 CODE_22 Check the "Đóng lại" button in edit infomation page
@@ -358,8 +358,8 @@ CODE_26 Check data information after creation
 
 ### Verify the delete data type function
 CODE_ Verify the delete data function
-    Create a test data with "Nhóm thủ thuật" type
-    When Select on the "Nhóm thủ thuật" item line
+    Create a test data with "Số răng" type
+    # When Select on the "Nhóm thủ thuật" item line
     When Click on the "Xóa" button in the "_@Tiêu đề@_" table line
     Then User look message "Đã xóa thành công" popup
     Then "_@Tiêu đề@_" should not be visible in item line

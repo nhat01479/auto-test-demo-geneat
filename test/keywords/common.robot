@@ -113,8 +113,7 @@ Required message "${text}" displayed under "${name}" field
 Enter "${type}" in "${name}" with "${text}"
   ${text}=                  Get Random Text                   ${type}                       ${text}
   ${element}=               Get Element Form Item By Name     ${name}                       //input[contains(@class, "ant-input")]
-  ${e}=    Get Element    ${element}
-  Log To Console    'e: ${e}'
+
   Clear Text                ${element}
   Fill Text                 ${element}                        ${text}                       True
   ${cnt}=                   Get Length                        ${text}
