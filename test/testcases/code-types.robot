@@ -358,15 +358,15 @@ CODE_26 Check data information after creation
 
 ### Verify the delete data type function
 CODE_ Verify the delete data function
-    Create a test data with "Số răng" type
+    Create a test data with "Nhóm thủ thuật" type
     # When Select on the "Nhóm thủ thuật" item line
     When Click on the "Xóa" button in the "_@Tiêu đề@_" table line
     Then User look message "Đã xóa thành công" popup
     Then "_@Tiêu đề@_" should not be visible in item line
 
 CODE_ Verify the cancel action button when delete data
-    Create a test data with "Nhóm thủ thuật" type
-    When Select on the "Nhóm thủ thuật" item line
+    Create a test data with "Số răng" type
+    # When Select on the "Nhóm thủ thuật" item line
     When Click on the "Xóa" button in the "_@Tiêu đề@_" table line with cancel
     Then "_@Tiêu đề@_" should be visible in table line
     When Click on the "Xóa" button in the "_@Tiêu đề@_" table line
